@@ -89,15 +89,14 @@
 
         public function readAllHead($data){
             $return = $this->db->LPU;
-            return $return;
-
-            $return = array_filter($return, function($item){
-                return $item -> hid == null;
-            });
-            return $return;
+            
+            $return = array_values(array_filter($return, function($item){
+                return is_null($item -> hid);
+            }));
+            // return $return;
 
             foreach ($return as &$item){
-                $item["child"] = $this -> isHaveAChild($item['id']);
+                $item->child = $this -> isHaveAChild($item->id);
             }
             return $return;
         }

@@ -25,14 +25,14 @@ const Home = ({ data }) => {
           <td> Have a child </td>
         </thead>
         <tbody>
-          {data && data.map( ( { id, hid, full_name, address, phone, ch } ) => (
+          {data && data.map( ( { id, hid, full_name, address, phone, child } ) => (
               <tr key = { id } >
                 <td> { id } </td>
                 <td> { hid } </td>
                 <td> { full_name } </td>
                 <td> { address } </td>
                 <td> { phone } </td>
-                <td> { ch } </td>
+                <td> { child } </td>
               </tr>
           ) ) } 
          </tbody>
