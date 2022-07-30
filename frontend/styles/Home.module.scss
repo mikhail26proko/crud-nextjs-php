@@ -19,6 +19,24 @@
   align-items: center;
 }
 
+.table {
+  padding: 5px;
+  margin: 20px;
+  width: 80%;
+  thead{
+    text-align: center;
+    background: #222;
+    color:white;
+  }
+  tr {
+    height: 100px;
+  }
+  td {
+    padding: 10px;
+    border: 1px solid black;
+  }
+}
+
 .footer {
   display: flex;
   flex: 1;

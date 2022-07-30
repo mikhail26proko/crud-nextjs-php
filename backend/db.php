@@ -87,11 +87,15 @@
             });
         }
 
-        public function getHeadOnly($data){
-            $request = $this -> db -> LPU;
-            $return = array_filter($request, function($item){
+        public function readAllHead($data){
+            $return = $this->db->LPU;
+            return $return;
+
+            $return = array_filter($return, function($item){
                 return $item -> hid == null;
             });
+            return $return;
+
             foreach ($return as &$item){
                 $item["child"] = $this -> isHaveAChild($item['id']);
             }

@@ -1,11 +1,10 @@
-import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
 
 export const getStaticProps = async () => {
   
   const response = await fetch("http://server:80",{
     method: 'POST',
-    body: JSON.stringify({"method":"readAll","data":""}),
+    body: JSON.stringify({"method":"readAllHead","data":""}),
   });
   const data = await response.json();
   return {
@@ -13,20 +12,31 @@ export const getStaticProps = async () => {
   }
 }
 
-
-
 const Home = ({ data }) => {
   return <>
     <div className={styles.wrapper}>
-      <ul>
-        {data & data.map(({id, full_name})=>{console.log(id, full_name)})}
-        {data & data.map(({id, full_name})=>{
-          return (
-            <li key={id}>
-              {full_name}
-            </li>)
-        })}
-      </ul>
+      <table className={styles.table}>
+        <thead>
+          <td> ID </td>
+          <td> HID </td>
+          <td> FULL NAME </td>
+          <td> ADDRESS </td>
+          <td> Phone </td>
+          <td> Have a child </td>
+        </thead>
+        <tbody>
+          {data && data.map( ( { id, hid, full_name, address, phone, ch } ) => (
+              <tr key = { id } >
+                <td> { id } </td>
+                <td> { hid } </td>
+                <td> { full_name } </td>
+                <td> { address } </td>
+                <td> { phone } </td>
+                <td> { ch } </td>
+              </tr>
+          ) ) } 
+         </tbody>
+      </table>
     </div>
   </>
 }
