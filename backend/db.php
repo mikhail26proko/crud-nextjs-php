@@ -10,7 +10,7 @@
         }
 
         public function readAll($data){
-            return $this->db;
+            return $this->db->LPU;
         }
 
         public function maxIndex(){
