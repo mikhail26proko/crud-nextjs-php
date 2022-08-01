@@ -6,16 +6,16 @@ import { Table, TableContainer, TableHead, TableBody, TablePagination, TableRow,
 import Row from "../components/Row"
 
 export const getStaticProps = async () => {
-  
-  const response = await fetch("http://server:80",{
+
+  const response = await fetch("http://server:80", {
     method: 'POST',
-    body: JSON.stringify({"method":"readAllHead","data":""}),
+    body: JSON.stringify({ "method": "readAllHead", "data": "" }),
   });
   const data = await response.json();
-  
+
   if (!data) {
     return {
-      notFound:true,
+      notFound: true,
     }
   }
 
@@ -38,35 +38,35 @@ const Home = ({ data }) => {
   };
 
   return <>
-    <div>
+    <div className={styles.container}>
       <TableContainer component={Paper}>
-          <Table aria-label="collapsible table">
-            <TableHead>
-              <TableRow>
-                <TableCell width={60}/>
-                <TableCell width={100}>ID</TableCell>
-                <TableCell>FULL NAME</TableCell>
-                <TableCell width={200}>ADDRESS</TableCell>
-                <TableCell width={200}>PHONE</TableCell>
-                <TableCell width={100}>Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data && data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                <Row key={row.id} row={row} />
-              ))}
-            </TableBody>
-          </Table>
-          <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={data.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-        </TableContainer>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell width={60} />
+              <TableCell width={100}>ID</TableCell>
+              <TableCell>FULL NAME</TableCell>
+              <TableCell width={200}>ADDRESS</TableCell>
+              <TableCell width={200}>PHONE</TableCell>
+              <TableCell width={100}>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data && data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <Row key={row.id} row={row} />
+            ))}
+          </TableBody>
+        </Table>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={data.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </TableContainer>
     </div>
   </>
 }

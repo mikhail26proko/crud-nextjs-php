@@ -93,11 +93,18 @@
             $return = array_values(array_filter($return, function($item){
                 return is_null($item -> hid);
             }));
-            // return $return;
-
             foreach ($return as &$item){
                 $item->child = $this -> isHaveAChild($item->id);
             }
+            return $return;
+        }
+
+        public function readAllSubhead($data){
+            $return = $this->db->LPU;
+            $id = $data['id'];
+            $return = array_values(array_filter($return, function($item) use($id){
+                return ($item -> hid == $id);
+            }));
             return $return;
         }
         
