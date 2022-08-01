@@ -7,7 +7,7 @@ services:
     volumes:
       - ${PWD}/frontend:/app/frontend
     ports:
-      - "3000:3000"
+      - "80:3000"
   
   server:
     working_dir: /app/backend/
@@ -20,6 +20,6 @@ services:
       
   phpfpm:
     working_dir: /app/backend/
-    image: php:fpm-alpine
+    image: php:7.3-fpm-alpine
     volumes:
       - ./backend:/srv/www
