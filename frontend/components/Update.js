@@ -6,6 +6,8 @@ import { useRouter } from "next/router"
 import { useState } from 'react';
 
 const Update = ( {data, dataAll} ) => {
+    
+    const allId = (dataAll.map((i)=>{return i.id}))
 
     const router = useRouter()
 
@@ -16,9 +18,6 @@ const Update = ( {data, dataAll} ) => {
     const [address,Address] = useState(data.address)
     const [phone,Phone] = useState(data.phone)
     
-    const HidChange = (event) => {
-        Hid(event.target.value);
-    };
     const FullNameChange = (event) => {
         FullName(event.target.value);
     };
@@ -58,12 +57,13 @@ const Update = ( {data, dataAll} ) => {
                 <Autocomplete
                     disablePortal
                     id="HID"
-                    options={dataAll}
-                    getOptionLabel={(option) => option.id}
-                    inputValue={hid}
-                    onChange={HidChange}
+                    defaultValue={hid}
+                    options={allId}
+                    onChange={(event, newValue) => {
+                        Hid(newValue);
+                    }}
                     sx={{ width: 300 }}
-                    renderInput={(params) => <TextField key={params} {...params} label="HID" />}
+                    renderInput={(params) => <TextField {...params} label="HID" />}
                 />
                 <br />
                 <br />
