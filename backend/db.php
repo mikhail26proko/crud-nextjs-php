@@ -40,8 +40,8 @@
 
         public function read($data){
             $id = $data['id'];
-            foreach ($this->db->LPU as $item){
-                if ($item->id == $id){
+            foreach ($this -> db -> LPU as $item){
+                if ($item -> id == $id){
                     return $item;
                 }
             }
@@ -76,7 +76,7 @@
                 }
             }
             unset($item);
-            $this->fullupdate($this->db);
+            return $this->fullupdate($this->db);
         }
 
         public function getChildByHeadID($data){
